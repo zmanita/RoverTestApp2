@@ -6,12 +6,22 @@
     tools:context=".DataFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Data Fragment"
-        android:textSize="25dp"
         android:layout_centerInParent="true"
-        />
+        android:text="Data Fragment"
+        android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/button_log"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="272dp"
+        android:text="@string/log" />
 
 </RelativeLayout>

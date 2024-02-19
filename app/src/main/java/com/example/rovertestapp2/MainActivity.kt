@@ -1,7 +1,9 @@
 package com.example.rovertestapp2
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 
@@ -28,6 +30,12 @@ class MainActivity : AppCompatActivity() {
                     .commit()
             }
         })
+        val disconnectbtn = findViewById<Button>(R.id.disconnect_btn)
+        disconnectbtn.setOnClickListener {
+            val intent2 = Intent(this, ActivityCover::class.java)
+            startActivity(intent2)
+            finish()
+        }
     }
 }
 
