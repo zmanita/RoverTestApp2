@@ -5,4 +5,8 @@
     <string name="connect">CONNECT</string>
     <string name="disconnect">Press to disconnect</string>
     <string name="log">LOG</string>
+    <string name="ROVER" />
+    <string name="controlcenter">Control Center</string>
+    <string name="rover">ROVER</string>
+    <string name="BACK">BACK</string>
 </resources>

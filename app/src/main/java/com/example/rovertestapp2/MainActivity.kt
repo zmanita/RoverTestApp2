@@ -9,9 +9,9 @@ import com.google.android.material.navigation.NavigationBarView
 
 class MainActivity : AppCompatActivity() {
     lateinit var bottomNavigationView: BottomNavigationView
-    var dataFragment = DataFragment()
-    var cameraFragment = CameraFragment()
-    var controlFragment = ControlFragment()
+    var dataFragment = com.example.rovertestapp2.DataFragment()
+    var cameraFragment = com.example.rovertestapp2.CameraFragment()
+    var controlFragment = com.example.rovertestapp2.ControlFragment()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
