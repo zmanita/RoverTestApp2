@@ -24,7 +24,7 @@ class DataFragment : Fragment() {
         val logbtn = view.findViewById<Button>(R.id.button_back)
         logbtn.setOnClickListener {
             val logfragment = com.example.rovertestapp2.LogFragment()
-            val transaction : FragmentTransaction =  requireFragmentManager().beginTransaction()
+            val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
            transaction.replace(R.id.container,logfragment)
             transaction.commit()
         }
