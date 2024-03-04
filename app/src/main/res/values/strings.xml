@@ -9,4 +9,10 @@
     <string name="controlcenter">Control Center</string>
     <string name="rover">ROVER</string>
     <string name="BACK">BACK</string>
+    <string name="temp">Temperature</string>
+    <string name="time">Time</string>
+    <string name="humid">Humidity</string>
+    <string name="sensordata">SENSOR DATA</string>
+    <string name="getTemp">GET TEMPERATURE</string>
+    <string name="getHumid">GET HUMIDITY</string>
 </resources>
