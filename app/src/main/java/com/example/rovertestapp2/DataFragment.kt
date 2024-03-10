@@ -29,9 +29,20 @@ class DataFragment : Fragment() {
            transaction.replace(R.id.container,logfragment)
             transaction.commit()
         }
+        val tempbtn = view.findViewById<Button>(R.id.temp_btn)
+        val textViewTemp = view.findViewById<TextView>(R.id.textViewTemp)
+        tempbtn.setOnClickListener {
+            textViewTemp.text = "New Temp"
+        }
+        val humidbtn = view.findViewById<Button>(R.id.humid_btn)
+        val textViewHumid = view.findViewById<TextView>(R.id.textViewHumid)
+        humidbtn.setOnClickListener {
+            textViewHumid.text = "New Humid"
+        }
 
         return view
         }
+
 
 
 }

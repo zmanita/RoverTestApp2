@@ -15,4 +15,5 @@
     <string name="sensordata">SENSOR DATA</string>
     <string name="getTemp">GET TEMPERATURE</string>
     <string name="getHumid">GET HUMIDITY</string>
+    <string name="datalog">DATA LOG</string>
 </resources>
