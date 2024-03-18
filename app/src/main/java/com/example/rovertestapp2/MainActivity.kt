@@ -17,19 +17,23 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         bottomNavigationView = findViewById(R.id.bottom_navigation)
         supportFragmentManager.beginTransaction().replace(R.id.container, dataFragment).commit()
-        bottomNavigationView.setOnItemReselectedListener(NavigationBarView.OnItemReselectedListener { item ->
-            val itemId = item.itemId
-            if (itemId == R.id.data) {
-                supportFragmentManager.beginTransaction().replace(R.id.container, dataFragment)
-                    .commit()
-            } else if (itemId == R.id.camera) {
-                supportFragmentManager.beginTransaction().replace(R.id.container, cameraFragment)
-                    .commit()
-            } else if (itemId == R.id.control) {
-                supportFragmentManager.beginTransaction().replace(R.id.container, controlFragment)
-                    .commit()
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.data -> {
+                    supportFragmentManager.beginTransaction().replace(R.id.container, dataFragment).commit()
+                    true
+                }
+                R.id.camera -> {
+                    supportFragmentManager.beginTransaction().replace(R.id.container, cameraFragment).commit()
+                    true
+                }
+                R.id.control -> {
+                    supportFragmentManager.beginTransaction().replace(R.id.container, controlFragment).commit()
+                    true
+                }
+                else -> false
             }
-        })
+        }
         val disconnectbtn = findViewById<Button>(R.id.disconnect_btn)
         disconnectbtn.setOnClickListener {
             val intent2 = Intent(this, ActivityCover::class.java)

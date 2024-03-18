@@ -11,14 +11,16 @@
 
 
     <TextView
-        android:id="@+id/textViewHumid"
+        android:id="@+id/textViewHumidT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline5"
-        app:layout_constraintTop_toTopOf="@+id/guideline6" />
+        android:freezesText="true"
+        android:text=" "
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/humid_btn"
+        app:layout_constraintStart_toStartOf="@+id/humid_btn"
+        app:layout_constraintTop_toBottomOf="@+id/humid_btn" />
 
     <TextView
         android:id="@+id/sensordata"
@@ -81,11 +83,25 @@
         android:id="@+id/textViewTemp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline6" />
+        android:freezesText="true"
+        android:text=" "
+        android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewTempTime"
+        app:layout_constraintEnd_toEndOf="@+id/temp_btn"
+        app:layout_constraintStart_toStartOf="@+id/temp_btn"
+        app:layout_constraintTop_toBottomOf="@+id/temp_btn" />
+
+    <TextView
+        android:id="@+id/textViewTempTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:freezesText="true"
+        android:text=" "
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/temp_btn"
+        app:layout_constraintStart_toStartOf="@+id/temp_btn"
+        app:layout_constraintTop_toBottomOf="@+id/temp_btn" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
@@ -128,6 +144,18 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.20" />
+
+    <TextView
+        android:id="@+id/textViewHumid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:freezesText="true"
+        android:text=" "
+        android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewHumidT"
+        app:layout_constraintEnd_toEndOf="@+id/humid_btn"
+        app:layout_constraintStart_toStartOf="@+id/humid_btn"
+        app:layout_constraintTop_toBottomOf="@+id/humid_btn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

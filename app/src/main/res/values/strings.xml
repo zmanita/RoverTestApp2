@@ -16,4 +16,7 @@
     <string name="getTemp">GET TEMPERATURE</string>
     <string name="getHumid">GET HUMIDITY</string>
     <string name="datalog">DATA LOG</string>
+    <string name="TIME" />
+    <string name="temperature">TEMPERATURE</string>
+    <string name="TIMEREAL">TIME</string>
 </resources>
