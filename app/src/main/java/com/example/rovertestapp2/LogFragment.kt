@@ -36,11 +36,20 @@ class LogFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dbTemp = FirebaseDatabase.getInstance().getReference("temperature")
-        dbHumid = FirebaseDatabase.getInstance().getReference("humidity")
+        dbTemp = FirebaseDatabase.getInstance().getReference("Temperature")
+        dbHumid = FirebaseDatabase.getInstance().getReference("Humidity")
 
         // Inflate the layout for this fragment
         val view =  inflater.inflate(R.layout.fragment_log, container, false)
+
+        val resetTempBtn = view.findViewById<Button>(R.id.button)
+        resetTempBtn.setOnClickListener {
+            viewModel.deleteTemperatures()
+        }
+        val resetHumidBtn = view.findViewById<Button>(R.id.button2)
+        resetHumidBtn.setOnClickListener {
+            viewModelHumid.deleteHumidities()
+        }
 
         //val backbtn = view.findViewById<Button>(R.id.button_back)
         //backbtn.setOnClickListener {
@@ -76,8 +85,13 @@ class LogFragment : Fragment() {
             Log.d("DataLogFragment", "Observing LiveData with list size: ${humids.size}")
             adapterH.updateHumidList(humids)
         }
-
     }
-
+    fun deleteAllHumidValues() {
+        dbHumid.removeValue().addOnSuccessListener {
+            Log.i("Firebase", "Successfully deleted all humidity values.")
+        }.addOnFailureListener { exception ->
+            Log.e("Firebase", "Error deleting humidity values", exception)
+        }
+    }
 
 }

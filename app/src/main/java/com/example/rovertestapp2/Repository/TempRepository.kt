@@ -13,15 +13,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class TempRepository() {
-    private val dbTemp:DatabaseReference = FirebaseDatabase.getInstance().getReference("temperature")
+    private val dbTemp:DatabaseReference = FirebaseDatabase.getInstance().getReference("Temperature")
     @Volatile private var INSTANCE : TempRepository?= null
     private val tempTimeList = mutableListOf<Temperature>()
-    //private val temperatureLogDao: TemperatureLogDao
-
-    //init {
-    //    val database = AppDatabase.getDatabase(context)
-    //    temperatureLogDao = database.temperatureLogDao()
-    //}
 
     fun getInstance() : TempRepository {
 
@@ -34,12 +28,12 @@ class TempRepository() {
     fun loadTemps(tempList: MutableLiveData<List<Temperature>>) {
         dbTemp.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                tempTimeList.clear()
-                val temp = snapshot.child("temp").getValue(Int::class.java)
-                val time = snapshot.child("time").getValue(String::class.java)
-                if (temp != null && time != null) {
-                    tempTimeList.add(Temperature(temp, time))
+                snapshot.children.forEach { timeSnapshot ->
+                    val time = timeSnapshot.key ?: return@forEach
+                    val temp = timeSnapshot.child("Temperature").getValue(Int::class.java) ?: return@forEach
+                    tempTimeList.add(Temperature(time, temp))
                 }
+                tempTimeList.reverse()
                 Log.d("loadTemps", "Posted value with list size: ${tempTimeList.size}")
                 tempList.postValue(tempTimeList)
             }
@@ -49,4 +43,14 @@ class TempRepository() {
             }
         })
     }
+    fun deleteAllTemperatureValues(tempList: MutableLiveData<List<Temperature>>) {
+        dbTemp.setValue("").addOnSuccessListener {
+            Log.i("Firebase", "Successfully deleted all temperature values")
+            tempTimeList.clear()
+            tempList.postValue(tempTimeList)
+        }.addOnFailureListener { exception ->
+            Log.e("Firebase", "Error deleting temperature values", exception)
+        }
+    }
+
 }

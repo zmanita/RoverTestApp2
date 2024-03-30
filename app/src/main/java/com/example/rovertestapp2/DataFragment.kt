@@ -10,9 +10,12 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.FragmentTransaction
 import com.example.rovertestapp2.Models.Temperature
-import com.example.rovertestapp2.Models.humidity
+import com.example.rovertestapp2.Models.Humidity
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import java.util.*
 
 
@@ -20,13 +23,11 @@ class DataFragment : Fragment() {
 
     private lateinit var dbTemp :DatabaseReference
     private lateinit var dbHumid :DatabaseReference
-    var newTemp = 24
-    var newHumid = 40
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        dbTemp = FirebaseDatabase.getInstance().getReference("temperature")
-        dbHumid = FirebaseDatabase.getInstance().getReference("humidity")
+        dbTemp = FirebaseDatabase.getInstance().getReference("Temperature")
+        dbHumid = FirebaseDatabase.getInstance().getReference("Humidity")
     }
 
 
@@ -48,46 +49,65 @@ class DataFragment : Fragment() {
         val textViewTemp = view.findViewById<TextView>(R.id.textViewTemp)
         val textViewTempTime = view.findViewById<TextView>(R.id.textViewTempTime)
         tempbtn.setOnClickListener {
-            dbTemp.child("temp").get().addOnSuccessListener {
-                Log.i("firebase", "Got value ${it.value}")
-                textViewTemp.text = " ${it.value}°C"
-            }.addOnFailureListener{
-                Log.e("firebase", "Error getting data", it)
-            }
-            dbTemp.child("time").get().addOnSuccessListener {
-                Log.i("firebase", "Got value ${it.value}")
-                textViewTempTime.text = " ${it.value} h"
-            }.addOnFailureListener{
-                Log.e("firebase", "Error getting data", it)
-            }
+            getLastTemp(textViewTemp, textViewTempTime)
         }
         val humidbtn = view.findViewById<Button>(R.id.humid_btn)
         val textViewHumid = view.findViewById<TextView>(R.id.textViewHumid)
         val textViewHumidT = view.findViewById<TextView>(R.id.textViewHumidT)
         humidbtn.setOnClickListener {
-            dbHumid.child("humid").get().addOnSuccessListener {
-                Log.i("firebase", "Got value ${it.value}")
-                textViewHumid.text = " ${it.value}%"
-            }.addOnFailureListener{
-                Log.e("firebase", "Error getting data", it)
-            }
-            dbHumid.child("time").get().addOnSuccessListener {
-                Log.i("firebase", "Got value ${it.value}")
-                textViewHumidT.text = " ${it.value} h"
-            }.addOnFailureListener{
-                Log.e("firebase", "Error getting data", it)
-            }
+            getLastHumid(textViewHumid,textViewHumidT)
         }
 
         return view
         }
 
-    fun writeNewTemp(temp: Int, time: String) {
-        val temp = Temperature(temp, time)
+    fun getLastTemp(textViewTemp: TextView,textViewTempTime: TextView){
+        dbTemp.orderByKey().limitToLast(1).addListenerForSingleValueEvent(object :
+            ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (childSnapshot in snapshot.children) {
+                        val time = childSnapshot.key
+                        val temp = childSnapshot.child("Temperature").getValue(Int::class.java)
+
+                        Log.i("firebase", "Latest Time: $time, Temperature: $temp")
+                        textViewTemp.text = "$temp°C"
+                        textViewTempTime.text = "$time h"
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("firebase", "Error fetching data", error.toException())
+            }
+        })
+    }
+    fun getLastHumid(textViewHumid: TextView,textViewHumidTime: TextView){
+        dbHumid.orderByKey().limitToLast(1).addListenerForSingleValueEvent(object :
+            ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (childSnapshot in snapshot.children) {
+                        val time = childSnapshot.key
+                        val humid = childSnapshot.child("Humidity").getValue(Int::class.java)
+
+                        Log.i("firebase", "Latest Time: $time, Humidity: $humid")
+                        textViewHumid.text = "$humid %"
+                        textViewHumidTime.text = "$time h"
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("firebase", "Error fetching data", error.toException())
+            }
+        })
+    }
+    fun writeNewTemp( time: String, temp: Int) {
+        val temp = Temperature(time, temp)
         dbTemp.setValue(temp)
     }
     fun writeNewHumid(humid: Int, time: String) {
-        val humid = humidity(humid, time)
+        val humid = Humidity(time, humid)
         dbHumid.setValue(humid)
     }
     fun getCurrentTime(): String {
@@ -96,22 +116,6 @@ class DataFragment : Fragment() {
         var minute = c.get(Calendar.MINUTE)
         var current ="$hour:$minute"
         return current
-    }
-    fun readTemp() {
-        dbTemp.child("temp").get().addOnSuccessListener {
-            Log.i("firebase", "Got value ${it.value}")
-            val t = it.value
-        }.addOnFailureListener{
-            Log.e("firebase", "Error getting data", it)
-        }
-    }
-    fun readTempTime(){
-        dbTemp.child("time").get().addOnSuccessListener {
-            Log.i("firebase", "Got value ${it.value}")
-        }.addOnFailureListener{
-            Log.e("firebase", "Error getting data", it)
-        }
-
     }
 
 }

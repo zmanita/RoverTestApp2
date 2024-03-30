@@ -13,6 +13,8 @@ class TempViewModel : ViewModel(){
     init {
         repository.loadTemps(_allTemps)
     }
-
+    fun deleteTemperatures() {
+        repository.deleteAllTemperatureValues(_allTemps)
+    }
 
 }

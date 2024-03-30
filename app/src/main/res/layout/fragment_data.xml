@@ -9,7 +9,6 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-
     <TextView
         android:id="@+id/textViewHumidT"
         android:layout_width="wrap_content"
@@ -21,7 +20,6 @@
         app:layout_constraintEnd_toEndOf="@+id/humid_btn"
         app:layout_constraintStart_toStartOf="@+id/humid_btn"
         app:layout_constraintTop_toBottomOf="@+id/humid_btn" />
-
     <TextView
         android:id="@+id/sensordata"
         android:layout_width="0dp"
@@ -156,6 +154,5 @@
         app:layout_constraintEnd_toEndOf="@+id/humid_btn"
         app:layout_constraintStart_toStartOf="@+id/humid_btn"
         app:layout_constraintTop_toBottomOf="@+id/humid_btn" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

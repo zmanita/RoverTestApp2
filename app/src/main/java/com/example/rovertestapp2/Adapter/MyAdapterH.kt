@@ -8,9 +8,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.rovertestapp2.Models.Humidity
 import com.example.rovertestapp2.R
-import com.example.rovertestapp2.Models.Temperature
-import com.example.rovertestapp2.Models.humidity
 
 
 class MyAdapterH: RecyclerView.Adapter<MyAdapterH.MyViewHolder>() {
@@ -19,7 +18,7 @@ class MyAdapterH: RecyclerView.Adapter<MyAdapterH.MyViewHolder>() {
         var time: TextView = itemView.findViewById(R.id.recTimeH)
     }
 
-    private val humidList = ArrayList<humidity>()
+    private val humidList = ArrayList<Humidity>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.recycler_humiditem,parent,false)
         return MyViewHolder(itemView)
@@ -29,7 +28,7 @@ class MyAdapterH: RecyclerView.Adapter<MyAdapterH.MyViewHolder>() {
         return humidList.size
     }
 
-    fun updateHumidList(humidList: List<humidity>){
+    fun updateHumidList(humidList: List<Humidity>){
         Log.d("MyAdapter", "updateHumidList called with list size: ${humidList.size}")
         this.humidList.clear()
         this.humidList.addAll(humidList)

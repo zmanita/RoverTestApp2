@@ -28,7 +28,7 @@ class MyAdapter: RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
         return tempList.size
     }
 
-    fun updateTempList(tempList: List<Temperature>){
+    fun updateTempList(tempList: List<Temperature>) {
         Log.d("MyAdapter", "updateTempList called with list size: ${tempList.size}")
         this.tempList.clear()
         this.tempList.addAll(tempList)

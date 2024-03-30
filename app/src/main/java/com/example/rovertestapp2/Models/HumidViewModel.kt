@@ -8,11 +8,14 @@ import com.example.rovertestapp2.Repository.TempRepository
 
 class HumidViewModel : ViewModel(){
     private val repository : HumidRepository = HumidRepository().getInstance()
-    private val _allHumids = MutableLiveData<List<humidity>>()
-    val allHumids : LiveData<List<humidity>> = _allHumids
+    private val _allHumids = MutableLiveData<List<Humidity>>()
+    val allHumids : LiveData<List<Humidity>> = _allHumids
 
     init {
         repository.loadHumids(_allHumids)
+    }
+    fun deleteHumidities() {
+        repository.deleteAllHumidityValues(_allHumids)
     }
 
 
