@@ -2,4 +2,21 @@
     <string name="app_name">RoverTestApp2</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="connect">CONNECT</string>
+    <string name="disconnect">Press to disconnect</string>
+    <string name="log">LOG</string>
+    <string name="ROVER" />
+    <string name="controlcenter">Control Center</string>
+    <string name="rover">ROVER</string>
+    <string name="BACK">BACK</string>
+    <string name="temp">Temperature</string>
+    <string name="time">Time</string>
+    <string name="humid">Humidity</string>
+    <string name="sensordata">SENSOR DATA</string>
+    <string name="getTemp">GET TEMPERATURE</string>
+    <string name="getHumid">GET HUMIDITY</string>
+    <string name="datalog">DATA LOG</string>
+    <string name="TIME" />
+    <string name="temperature">TEMPERATURE</string>
+    <string name="TIMEREAL">TIME</string>
 </resources>
