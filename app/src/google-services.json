@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1013527885032",
+    "firebase_url": "https://rovertestapp2-default-rtdb.firebaseio.com",
+    "project_id": "rovertestapp2",
+    "storage_bucket": "rovertestapp2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1013527885032:android:2f9e84a706a2129634455d",
+        "android_client_info": {
+          "package_name": "com.example.rovertestapp2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWt-4FZNztwiS_Qbyiwo1_Ot-ji06E1Y0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
