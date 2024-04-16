@@ -1,12 +1,10 @@
 package com.example.rovertestapp2.Adapter
 
-import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rovertestapp2.Models.Humidity
 import com.example.rovertestapp2.R
@@ -37,6 +35,8 @@ class MyAdapterH: RecyclerView.Adapter<MyAdapterH.MyViewHolder>() {
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.humid.text = humidList[position].humid.toString()
-        holder.time.text = humidList[position].time
+        val timeText = humidList[position].time
+        val realTime = timeText.replace("\"", "")
+        holder.time.text = realTime
     }
 }

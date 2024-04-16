@@ -34,26 +34,25 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-<<<<<<< HEAD
-        android:text="Control Fragment"
-        android:textSize="25dp"
-        android:layout_centerInParent="true"
-        />
-=======
-        android:layout_centerInParent="true"
-        android:text="Control Fragment"
-        android:textSize="25dp" />
->>>>>>> b86fc489c94b7d3401065a9203745391e08e50f5
+        android:layout_height="wrap_content">
+    </TextView>
 
     <Button
-        android:id="@+id/ButtonForward"
+        android:id="@+id/buttonForward"
         android:layout_width="181dp"
         android:layout_height="134dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:text="Move Forward"
         tools:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/buttonStop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Stop" />
 
 
 </RelativeLayout>

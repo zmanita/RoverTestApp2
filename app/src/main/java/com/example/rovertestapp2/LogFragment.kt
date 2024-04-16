@@ -1,24 +1,24 @@
 package com.example.rovertestapp2
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.fragment.app.FragmentTransaction
-import androidx.lifecycle.Observer
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rovertestapp2.Adapter.MyAdapter
 import com.example.rovertestapp2.Adapter.MyAdapterH
 import com.example.rovertestapp2.Models.HumidViewModel
 import com.example.rovertestapp2.Models.TempViewModel
-import com.example.rovertestapp2.Models.Temperature
-import com.google.firebase.database.*
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+
 
 class LogFragment : Fragment() {
     private lateinit var dbTemp : DatabaseReference
@@ -44,11 +44,11 @@ class LogFragment : Fragment() {
 
         val resetTempBtn = view.findViewById<Button>(R.id.button)
         resetTempBtn.setOnClickListener {
-            viewModel.deleteTemperatures()
+            resetTemp()
         }
         val resetHumidBtn = view.findViewById<Button>(R.id.button2)
         resetHumidBtn.setOnClickListener {
-            viewModelHumid.deleteHumidities()
+            resetHumid()
         }
 
         //val backbtn = view.findViewById<Button>(R.id.button_back)
@@ -86,12 +86,33 @@ class LogFragment : Fragment() {
             adapterH.updateHumidList(humids)
         }
     }
-    fun deleteAllHumidValues() {
-        dbHumid.removeValue().addOnSuccessListener {
-            Log.i("Firebase", "Successfully deleted all humidity values.")
-        }.addOnFailureListener { exception ->
-            Log.e("Firebase", "Error deleting humidity values", exception)
+    fun resetTemp(){
+        val builder = AlertDialog.Builder(activity)
+        builder.setTitle("Confirm reset")
+        builder.setMessage("Are you sure you want to reset all the temperature values?")
+        builder.setPositiveButton("Yes") { dialog, id ->
+            viewModel.deleteTemperatures()
+            dialog.cancel()
         }
+        builder.setNegativeButton("No"){ dialog, id ->
+            dialog.cancel()
+        }
+        var alert = builder.create()
+        alert.show()
+    }
+    fun resetHumid(){
+        val builder = AlertDialog.Builder(activity)
+        builder.setTitle("Confirm reset")
+        builder.setMessage("Are you sure you want to reset all the humidity values?")
+        builder.setPositiveButton("Yes") { dialog, id ->
+            viewModelHumid.deleteHumidities()
+            dialog.cancel()
+        }
+        builder.setNegativeButton("No"){ dialog, id ->
+            dialog.cancel()
+        }
+        var alert = builder.create()
+        alert.show()
     }
 
 }
