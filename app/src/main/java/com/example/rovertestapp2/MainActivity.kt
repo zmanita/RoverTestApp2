@@ -10,7 +10,6 @@ import com.google.android.material.navigation.NavigationBarView
 class MainActivity : AppCompatActivity() {
     lateinit var bottomNavigationView: BottomNavigationView
     var dataFragment = DataFragment()
-    var cameraFragment = CameraFragment()
     var controlFragment = ControlFragment()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,10 +20,6 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.data -> {
                     supportFragmentManager.beginTransaction().replace(R.id.container, dataFragment).commit()
-                    true
-                }
-                R.id.camera -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.container, cameraFragment).commit()
                     true
                 }
                 R.id.control -> {

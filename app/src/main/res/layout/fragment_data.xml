@@ -59,7 +59,7 @@
         android:textAlignment="center"
         app:autoSizeTextType="uniform"
         app:layout_constraintDimensionRatio="8:1"
-        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
         app:layout_constraintTop_toTopOf="@id/guideline1" />
 
