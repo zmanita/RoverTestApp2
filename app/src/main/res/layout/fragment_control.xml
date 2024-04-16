@@ -5,6 +5,33 @@
     android:layout_height="match_parent"
     tools:context=".ControlFragment">
 
+    <Button
+        android:id="@+id/buttonRight"
+        android:layout_width="181dp"
+        android:layout_height="134dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="50dp"
+        android:text="Turn Right" />
+
+    <Button
+        android:id="@+id/buttonLeft"
+        android:layout_width="181dp"
+        android:layout_height="134dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="50dp"
+        android:text="Turn Left" />
+
+    <Button
+        android:id="@+id/buttonBackwards"
+        android:layout_width="181dp"
+        android:layout_height="134dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        android:text="Move Backwards"
+        tools:layout_centerHorizontal="true" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,6 +45,15 @@
         android:text="Control Fragment"
         android:textSize="25dp" />
 >>>>>>> b86fc489c94b7d3401065a9203745391e08e50f5
+
+    <Button
+        android:id="@+id/ButtonForward"
+        android:layout_width="181dp"
+        android:layout_height="134dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="Move Forward"
+        tools:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
